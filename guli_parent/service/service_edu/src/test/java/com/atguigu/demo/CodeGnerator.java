@@ -44,7 +44,7 @@ public class CodeGnerator {
 
         // 3、数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:mysql://lovelycat.top:3306/guli?serverTimezone=GMT%2B8");
+        dsc.setUrl("jdbc:mysql://***:3306/guli?serverTimezone=GMT%2B8");
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
         dsc.setUsername("root");
         dsc.setPassword("root");
