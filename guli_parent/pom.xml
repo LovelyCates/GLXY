@@ -15,7 +15,7 @@
     </parent>
     <groupId>com.atguigu</groupId>
     <artifactId>guli_parent</artifactId>
-<!--    当前类型是 Pom 类型-->
+    <!-- 当前类型是 Pom 类型 -->
     <packaging>pom</packaging>
     <version>0.0.1-SNAPSHOT</version>
     <name>guli_parent</name>
@@ -23,28 +23,63 @@
     <properties>
         <java.version>11</java.version>
         <guli.version>0.0.1-SNAPSHOT</guli.version>
-        <mybatis-plus.version>3.0.5</mybatis-plus.version>
+        <!-- mybatis-plus 版本 3.5.x 版本会不兼容，低版本也是-->
+        <mybatis-plus.version>3.4.1</mybatis-plus.version>
+        <!-- 基于 java 的模板引擎 -->
         <velocity.version>2.0</velocity.version>
+        <!-- swagger 版本 -->
         <swagger.version>2.7.0</swagger.version>
+        <!-- 阿里云对象存储 目前没用到，用的minio-->
         <aliyun.oss.version>2.8.3</aliyun.oss.version>
+        <!--  java 开发的强大易用的日期和时间库 -->
         <jodatime.version>2.10.1</jodatime.version>
+        <!-- Java编写的免费开源的跨平台的 Java API 通过它Java开发人员可以读取Excel文件的内容、创建新的Excel文件、更新已经存在的Excel文件。jxl 由于其小巧 易用的特点, 逐渐已经取代了 POI-excel的地位,-->
         <poi.version>3.17</poi.version>
+        <!-- 文件上传组件，用来接收浏览器上传的组件 -->
         <commons-fileupload.version>1.3.1</commons-fileupload.version>
+        <!-- JDK提供的与文件相关的类 Apache 提供的 IO 工具类 -->
         <commons-io.version>2.6</commons-io.version>
+        <!-- 提供高效的、最新的、功能丰富的支持HTTP协议的客户端编程工具包 -->
         <httpclient.version>4.5.1</httpclient.version>
+        <!-- 身份认证 jar -->
         <jwt.version>0.7.0</jwt.version>
+        <!-- 阿里云 oss 相关 -->
         <aliyun-java-sdk-core.version>4.3.3</aliyun-java-sdk-core.version>
         <aliyun-sdk-oss.version>3.1.0</aliyun-sdk-oss.version>
         <aliyun-java-sdk-vod.version>2.15.2</aliyun-java-sdk-vod.version>
         <aliyun-java-vod-upload.version>1.4.11</aliyun-java-vod-upload.version>
         <aliyun-sdk-vod-upload.version>1.4.11</aliyun-sdk-vod-upload.version>
+        <!-- Fastjson 是一个 Java 库，可以将 Java 对象转换为 JSON 格式 -->
         <fastjson.version>1.2.28</fastjson.version>
+        <!-- Java开发中常用的数据转换程序，其主要表现在转换Java对象和Json对象上 -->
         <gson.version>2.8.2</gson.version>
         <json.version>20170516</json.version>
+        <!--  Apache 组织提供的一个开源 JDBC工具类库，它是对JDBC的简单封装，学习成本极低，并且使用dbutils能极大简化jdbc编码的工作量 -->
         <commons-dbutils.version>1.7</commons-dbutils.version>
+        <!-- spring cloud -->
         <canal.client.version>1.1.0</canal.client.version>
+        <!-- docker 部署插件 -->
         <docker.image.prefix>zx</docker.image.prefix>
+        <!-- spring cloud -->
         <cloud-alibaba.version>0.2.2.RELEASE</cloud-alibaba.version>
+        <!-- 对象存储·版本 -->
+        <minio.version>8.4.0</minio.version>
+        <commons-beanutils.version>1.9.4</commons-beanutils.version>
+        <jackson-module-kotlin.version>2.11.2</jackson-module-kotlin.version>
+        <!-- easy Excel -->
+        <easyExcel.version>2.1.1</easyExcel.version>
+        <!-- 解析SQL并且动态拼接生成SQL，在Mybatis-plus中的租户其实也是类似这样实现的 -->
+        <jsqlparser.version>4.3</jsqlparser.version>
+        <!-- 一个基于Redis实现的分布式工具，有基本分布式对象和高级又抽象的分布式服务 -->
+        <redisson.version>3.16.8</redisson.version>
+        <!-- Springboot 分页插件 -->
+        <pagehelper.version>1.4.3</pagehelper.version>
+        <!-- 监控数据库连接池 -->
+        <durd.version>1.2.8</durd.version>
+        <!-- utool是一个小而全的Java工具类库，通过静态方法封装，降低相关API的学习成本 -->
+        <hutool.version>5.7.21</hutool.version>
+        <!-- 字符转换 -->
+        <pinyin4j.version>2.5.0</pinyin4j.version>
     </properties>
 
 <!--    锁定依赖的版本 -->
@@ -80,6 +115,13 @@
                 <artifactId>velocity-engine-core</artifactId>
                 <version>${velocity.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-generator</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+
 
             <!--swagger-->
             <dependency>
@@ -204,7 +246,48 @@
                 <artifactId>canal.client</artifactId>
                 <version>${canal.client.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>io.minio</groupId>
+                <artifactId>minio</artifactId>
+                <version>${minio.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>me.tongfei</groupId>
+                <artifactId>progressbar</artifactId>
+                <version>0.5.3</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.squareup.okhttp3</groupId>
+                <artifactId>okhttp</artifactId>
+                <version>4.8.1</version>
+            </dependency>
+
+            <!-- 操作JAVA bean的工具包。里面提供了各种各样的工具类 -->
+            <dependency>
+                <groupId>commons-beanutils</groupId>
+                <artifactId>commons-beanutils</artifactId>
+                <version>1.9.4</version>
+            </dependency>
+
+            <!--  For Jackson Kotlin classes support please add "com.fasterxml.jackson.module:jackson-module-kotlin" to the classpath -->
+            <dependency>
+                <groupId>com.fasterxml.jackson.module</groupId>
+                <artifactId>jackson-module-kotlin</artifactId>
+                <version>${jackson-module-kotlin.version}}</version>
+            </dependency>
+
+            <!-- easyExcel  需要 poi 依赖，其中 2.1.1 ~ poi 3.17-->
+            <!-- https://mvnrepository.com/artifact/com.alibaba/easyexcel -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>easyexcel</artifactId>
+                <version>${easyExcel.version}</version>
+            </dependency>
         </dependencies>
+
     </dependencyManagement>
 
 

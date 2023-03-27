@@ -23,14 +23,14 @@ import java.util.List;
  * @author sakura
  * @since 2023-02-26
  */
-@RestController
 /**
  * 浏览器从一个域名的网页去请求另一个域名的资源时，域名、端口、协议任一不同，都是跨域 。前后端分离开发中，需要考虑ajax跨域的问题。
  * 这里我们可以从服务端解决这个问题
  */
 @CrossOrigin
-@Api(tags = {SwaggerConfig.TAG_1})
-@RequestMapping("/eduservice/edu-teacher")
+@Api(tags = {SwaggerConfig.TeacherTag})
+@RequestMapping("/eduservice/teacher")
+@RestController
 public class EduTeacherController {
 
     // service 注入
@@ -53,25 +53,25 @@ public class EduTeacherController {
             @ApiParam(name = "id", value = "讲师ID", required = true)
             @PathVariable String id
     ){
-        teacherService.removeById(id);
-        return R.ok();
+        boolean result = teacherService.removeById(id);
+        return result ? R.ok() : R.error().message("删除失败");
     }
 
     @ApiOperation(value = "分页讲师列表")
-    @GetMapping("{page}/{limit}")
+    @PostMapping("pageTeacherCondition/{current}/{limit}")
     public R pageList(
             @ApiParam(name = "page", value = "当前页码", required = true)
-            @PathVariable Long page,
+            @PathVariable Long current,
 
             @ApiParam(name = "limit", value = "每页记录数", required = true)
             @PathVariable Long limit,
 
             @ApiParam(name = "teacherQuery", value = "查询对象", required = false)
-            TeacherQuery teacherQuery
+            @RequestBody TeacherQuery teacherQuery
 
     ){
 
-        Page<EduTeacher> pageParam = new Page<>(page, limit);
+        Page<EduTeacher> pageParam = new Page<>(current, limit);
         teacherService.pageQuery(pageParam, teacherQuery);
         List<EduTeacher> teachers = pageParam.getRecords();
         long total = pageParam.getTotal();
@@ -81,17 +81,16 @@ public class EduTeacherController {
 
 
     @ApiOperation(value = "新增讲师")
-    @PostMapping
+    @PostMapping("/save")
     public R save(
             @ApiParam(name = "teacher", value = "讲师对象", required = false)
             @RequestBody EduTeacher teacher
     ) {
-      teacherService.save(teacher);
-      return R.ok();
+      return teacherService.save(teacher) ? R.ok() : R.error().message("保存失败");
     }
 
     @ApiOperation(value = "根据ID查询讲师")
-    @GetMapping("{id}")
+    @PostMapping("/getTeacher/{id}")
     public R getById(
             @ApiParam(name = "id", value = "讲师ID", required = true)
             @PathVariable String id){
@@ -101,15 +100,10 @@ public class EduTeacherController {
     }
 
     @ApiOperation(value = "根据ID修改讲师")
-    @PutMapping("{id}")
+    @PostMapping("updateTeacher")
     public R updateById(
-            @ApiParam(name = "id", value = "讲师ID", required = true)
-            @PathVariable String id,
-
             @ApiParam(name = "teacher", value = "讲师对象", required = true)
             @RequestBody EduTeacher teacher){
-
-        teacher.setId(id);
         teacherService.updateById(teacher);
         return R.ok();
     }

@@ -17,9 +17,15 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class SwaggerConfig {
 
-    public static final String TAG_1 = "edu_teacher";
+    public static final String TeacherTag = "edu_teacher";
 
-    public static final String TAG_2 = "query_object";
+    public static final String ObjectQueryTag = "query_object";
+
+    public static final String OssTag = "edu_oss";
+
+    public static final String CourseTag = "edu_course";
+
+    public static final String ChapterTag = "edu_chapter";
 
     @Bean
     public Docket webApiConfig(){
@@ -31,8 +37,11 @@ public class SwaggerConfig {
                 .paths(Predicates.not(PathSelectors.regex("/admin/.*")))
                 .paths(Predicates.not(PathSelectors.regex("/error.*")))
                 .build()
-                .tags(new Tag(TAG_1, "讲师管理"))
-                .tags(new Tag(TAG_2, "讲师查询对象"));
+                .tags(new Tag(TeacherTag, "讲师管理"))
+                .tags(new Tag(ObjectQueryTag, "讲师查询对象"))
+                .tags(new Tag(OssTag, "OSS上传"))
+                .tags(new Tag(CourseTag, "讲师课程管理"))
+                .tags(new Tag(ChapterTag, "课程章节管理"));
     }
 
     private ApiInfo webApiInfo(){

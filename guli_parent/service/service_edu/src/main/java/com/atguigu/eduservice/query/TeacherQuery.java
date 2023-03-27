@@ -1,12 +1,9 @@
 package com.atguigu.eduservice.query;
 
-import com.atguigu.servicebase.config.SwaggerConfig;
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
-import javax.validation.Valid;
 import java.io.Serializable;
 
 @ApiModel(value = "Teacher查询对象", description = "讲师查询对象封装")

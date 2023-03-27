@@ -8,6 +8,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.apache.poi.util.StringUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -22,6 +23,8 @@ import org.springframework.util.StringUtils;
 @Service
 public class EduTeacherServiceImpl extends ServiceImpl<EduTeacherMapper, EduTeacher> implements EduTeacherService {
 
+    @Autowired
+    EduTeacherMapper eduTeacherMapper;
     @Override
     public void pageQuery(Page<EduTeacher> pageParam, TeacherQuery teacherQuery) {
 
@@ -30,7 +33,7 @@ public class EduTeacherServiceImpl extends ServiceImpl<EduTeacherMapper, EduTeac
 
         if (teacherQuery == null)
         {
-            baseMapper.selectPage(pageParam, queryWrapper);
+            eduTeacherMapper.selectPage(pageParam, queryWrapper);
             return;
         }
 
@@ -51,6 +54,6 @@ public class EduTeacherServiceImpl extends ServiceImpl<EduTeacherMapper, EduTeac
         if (!StringUtils.isEmpty(end))
             queryWrapper.eq("gmt_create", end);
 
-        baseMapper.selectPage(pageParam, queryWrapper);
+        eduTeacherMapper.selectPage(pageParam, queryWrapper);
     }
 }

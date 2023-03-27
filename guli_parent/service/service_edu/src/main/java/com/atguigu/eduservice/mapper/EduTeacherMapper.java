@@ -2,6 +2,7 @@ package com.atguigu.eduservice.mapper;
 
 import com.atguigu.eduservice.entity.EduTeacher;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * <p>
@@ -11,6 +12,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author sakura
  * @since 2023-02-26
  */
+@Mapper
 public interface EduTeacherMapper extends BaseMapper<EduTeacher> {
 
 }
